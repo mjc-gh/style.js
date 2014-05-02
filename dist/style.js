@@ -29,27 +29,28 @@ function Style(el){
     }
 
     function write(prop, value){
-        if (typeof value == 'string' || typeof value == 'number'){
-            if (cssNumber[prop])
-                value += 'px'; // pixelify value
+        if (cssNumber[prop])
+            value += 'px'; // pixelify value
 
-            el.style[prop] = value;
-            computed = null; // clear computed cache
-
-        } else for (var i in value)
-            write(prop, value[i]);
+        el.style[prop] = value;
+        computed = null; // clear computed cache
     }
 
     function proxy(prop, rules){
-        if (rules == undefined) return read(prop);
-        else write(camelCase(prop), rules);
+        if (rules == undefined) {
+            if (typeof prop == 'string')
+                return read(prop);
+            else for (var i in prop)
+                write(i, prop[i]);
+
+        } else write(camelCase(prop), rules);
     };
 
     proxy.unitless = proxy.u = function(prop){
         return parseFloat(read(prop), 10) || undefined;
     };
 
-    return proxy
+    return proxy;
 }
 
 Style.VERSION = '0.0.1';
