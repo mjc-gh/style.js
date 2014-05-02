@@ -11,7 +11,6 @@ var cssNumber = {
     orphans: true, widows: true, zIndex: true, zoom: true
 };
 
-// Base function.
 function Style(el){
     var computed;
 
@@ -55,10 +54,8 @@ function Style(el){
     return proxy
 }
 
-// Version.
 Style.VERSION = '0.0.1';
 
-// Export to the root, which is probably `window`.
 root.Style = root.S = Style;
 
 
