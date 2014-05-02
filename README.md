@@ -27,9 +27,12 @@ Basic usage is as follows:
     style(myHTMLElement).unitless('font-size');
     style(myHTMLElement).u('font-size'); // alias
 
+    // The Style function is also alised to S
+    S(myHTMLElement)('font-size', '2em');
+
 Note that, the wrapper function will cache the computed styles. It will
-remove the cache when something is written. Do not write elsewhere or
-else the cache will be stale!
+remove the cache when something is written. Do not set styles from elsewhere
+or else the cache will become invalid!
 
 ## Contributing
 
