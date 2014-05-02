@@ -32,7 +32,7 @@ test('read unitless style', function(){
 });
 
 test('read unitless non-existant style', function(){
-    strictEqual(S(el).unitless('content'), undefined);
+    strictEqual(S(el).unitless('margin'), 0);
 });
 
 test('write style', function(){

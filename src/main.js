@@ -43,7 +43,7 @@ function Style(el){
     };
 
     proxy.unitless = proxy.u = function(prop){
-        return parseFloat(read(prop), 10) || undefined;
+        return parseFloat(read(prop), 10) || 0;
     };
 
     return proxy;
