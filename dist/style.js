@@ -29,7 +29,7 @@ function Style(el){
     }
 
     function write(prop, value){
-        if (cssNumber[prop])
+        if (!cssNumber[prop] && typeof value == 'number')
             value += 'px'; // pixelify value
 
         el.style[prop] = value;
@@ -41,9 +41,10 @@ function Style(el){
             if (typeof prop == 'string')
                 return read(prop);
             else for (var i in prop)
-                write(i, prop[i]);
-
-        } else write(camelCase(prop), rules);
+                write(camelCase(i), prop[i]);
+        } else {
+            write(camelCase(prop), rules);
+        }
     };
 
     proxy.unitless = proxy.u = function(prop){
