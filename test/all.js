@@ -40,3 +40,11 @@ test('write style', function(){
 
     equal(el.style.fontSize, '100px');
 });
+
+test('write object of styles', function(){
+    S(el)({ 'font-size': '100px', 'font-weight': 400 });
+
+    equal(el.style.fontSize, '100px');
+    equal(el.style.fontWeight, 400);
+});
+
