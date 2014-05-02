@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     concat: {
       options: {
-        banner: '/* <%= pkg.name %> <%= pkg.version %> by <%= pkg.author %> under <%= pkg.license %> license */\n',
+        banner: '/* <%= pkg.name %> <%= pkg.version %> (<%= pkg.license %> license) */\n',
         separator: "\n\n"
       },
       dist: {

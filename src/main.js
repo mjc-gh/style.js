@@ -5,14 +5,14 @@ var cssNumber = {
     orphans: true, widows: true, zIndex: true, zoom: true
 };
 
+function camelCase(prop){
+    return prop.replace(/-[a-z]/g, function(match){
+        return match[1].toUpperCase();
+    });
+}
+
 function Style(el){
     var computed;
-
-    function camelCase(prop){
-        return prop.replace(/-[a-z]/g, function(match){
-            return match[1].toUpperCase();
-        });
-    }
 
     function read(prop){
         if (computed == undefined)
