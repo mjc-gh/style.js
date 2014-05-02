@@ -1,3 +1,4 @@
+/* style.js 0.0.1 by Michael J Coyne under MIT license */
 !function(root, undefined) {
 
 

@@ -1,8 +1,8 @@
 {
   "name": "style.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/style.min.js",
-  "description": "Simple Javascript CSS Wrapper",
+  "description": "Light-weight Javascript Style Wrapper",
   "repository": {
     "type": "git",
     "url": "git://github.com/mikeycgto/style.js.git"
