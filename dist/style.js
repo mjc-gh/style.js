@@ -2,9 +2,6 @@
 !function(root, undefined) {
 
 
-if (root.getComputedStyle == undefined)
-    throw new Error('unsupport');
-
 // From jQuery (src/css.js)
 var cssNumber = {
     boxFlex: true, columnCount: true, fillOpacity: true,
