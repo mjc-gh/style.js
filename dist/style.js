@@ -37,7 +37,7 @@ function Style(el){
     }
 
     function proxy(prop, rules){
-        if (rules == undefined) {
+        if (rules === undefined) {
             if (typeof prop == 'string')
                 return read(prop);
             else for (var i in prop)
