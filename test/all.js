@@ -80,8 +80,14 @@ test('write background image without an explicit protocol', function(){
     equal(el.style.backgroundImage, 'url(file://path/to/some/image.png)');
 });
 
-test('write CSS function with an array', function(){
+test('write CSS function as an array', function(){
     S(el)('top', ['calc', '50%']);
 
     equal(el.style.top, 'calc(50%)');
+});
+
+test('write CSS function as an array pixelifies numbers', function(){
+    S(el)('top', ['calc', 225]);
+
+    equal(el.style.top, 'calc(225px)');
 });
