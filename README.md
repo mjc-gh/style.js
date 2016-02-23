@@ -30,6 +30,12 @@ Basic usage is as follows:
     // The Style function is also alised to S
     S(myHTMLElement)('font-size', '2em');
 
+    // To remove a property, call with undefined
+    S(myHTMLElement)('font-size', undefined);
+
+    // Or with a CSS function
+    S(myHTMLElement)('transform', ['translate', '50%', '50%']);
+
 Note that, the wrapper function will cache the computed styles. It will
 remove the cache when something is written. Do not set styles from elsewhere
 or else the cache will become invalid!

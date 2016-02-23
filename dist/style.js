@@ -1,6 +1,4 @@
-/* style.js 0.0.1 (MIT license) */
 !function(root, undefined) {
-
 
 // From jQuery (src/css.js)
 var cssNumber = {
@@ -8,6 +6,11 @@ var cssNumber = {
     fontWeight: true, lineHeight: true, opacity: true,
     orphans: true, widows: true, zIndex: true, zoom: true
 };
+
+var cssUrl = {
+    backgroundImage: true
+};
+
 
 function camelCase(prop){
     return prop.replace(/-[a-z]/g, function(match){
@@ -29,21 +32,42 @@ function Style(el){
     }
 
     function write(prop, value){
-        if (!cssNumber[prop] && typeof value == 'number')
-            value += 'px'; // pixelify value
+        var cProp = camelCase(prop);
 
-        el.style[prop] = value;
         computed = null; // clear computed cache
+
+        if (value === undefined){
+            el.style.removeProperty(prop)
+            return;
+        } else if (!cssNumber[cProp] && typeof value == 'number'){
+            // pixelify value
+            value += 'px';
+
+        } else if (cssUrl[cProp] && /^http|^\/\//.test(value)){
+            // wrap with url(...)
+            value = 'url('+ value +')';
+
+        } else if (Array.isArray(value)){
+            // handles values like ['translate', 40, 50]
+            value = value.shift() +'('+ value.map(function(arg){
+                // pixelify numbers
+                if (typeof arg == 'number')
+                    arg += 'px';
+                return arg;
+            }).join(', ') +')';
+        }
+
+        el.style[cProp] = value;
     }
 
     function proxy(prop, rules){
-        if (rules === undefined) {
+        if (arguments.length == 1) {
             if (typeof prop == 'string')
                 return read(prop);
             else for (var i in prop)
-                write(camelCase(i), prop[i]);
+                write(i, prop[i]);
         } else {
-            write(camelCase(prop), rules);
+            write(prop, rules);
         }
     };
 
@@ -57,6 +81,5 @@ function Style(el){
 Style.VERSION = '0.0.1';
 
 root.Style = root.S = Style;
-
 
 }(this);

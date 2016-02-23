@@ -57,3 +57,31 @@ test('write object of styles', function(){
     ]);
 });
 
+test('write with undefined deletes property', function(){
+    var newEl;
+
+    newEl = document.createElement('div');
+    newEl.style.fontSize = '14px';
+
+    S(newEl)('font-size', undefined);
+
+    equal(newEl.style.fontSize, '');
+});
+
+test('write background image with http URL', function(){
+    S(el)('background-image', 'https://github.com/favicon.ico');
+
+    equal(el.style.backgroundImage, 'url(https://github.com/favicon.ico)')
+});
+
+test('write background image without an explicit protocol', function(){
+    S(el)('background-image', '//path/to/some/image.png');
+
+    equal(el.style.backgroundImage, 'url(file://path/to/some/image.png)');
+});
+
+test('write CSS function with an array', function(){
+    S(el)('top', ['calc', '50%']);
+
+    equal(el.style.top, 'calc(50%)');
+});
