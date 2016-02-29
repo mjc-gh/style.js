@@ -46,6 +46,8 @@ function Style(el){
             value = 'url('+ value +')';
 
         } else if (Array.isArray(value)){
+            value = value.slice();
+
             // handles values like ['translate', 40, 50]
             value = value.shift() +'('+ value.map(function(arg){
                 // pixelify numbers
