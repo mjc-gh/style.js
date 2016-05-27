@@ -36,6 +36,9 @@ Basic usage is as follows:
     // Or with a CSS function
     S(myHTMLElement)('transform', ['translate', '50%', '50%']);
 
+    // Clear all inline styles with an empty object
+    S(myHTMLElement)({})
+
 Note that, the wrapper function will cache the computed styles. It will
 remove the cache when something is written. Do not set styles from elsewhere
 or else the cache will become invalid!

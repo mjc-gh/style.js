@@ -62,11 +62,24 @@ function Style(el){
         el.style[cProp] = value;
     }
 
+    function reset() {
+        var cssText = el.style.cssText;
+        var keys = cssText.split("; ").map(function(string) {
+            return string.split(": ")[0];
+        });
+
+        for (var index in keys) {
+            el.style[keys[index]] = "";
+        }
+    }
+
     function proxy(prop, rules){
         if (arguments.length == 1) {
             if (typeof prop == 'string')
                 return read(prop);
-            else for (var i in prop)
+            else if (typeof prop == 'object' && Object.keys(prop).length === 0) {
+                reset();
+            } else for (var i in prop)
                 write(i, prop[i]);
         } else {
             write(prop, rules);

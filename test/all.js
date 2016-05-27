@@ -91,3 +91,14 @@ test('write CSS function as an array pixelifies numbers', function(){
 
     equal(el.style.top, 'calc(225px)');
 });
+
+test('clear inline styles with empty object', function() {
+    S(el)({height: "100%", width: "100%"});
+
+    equal(el.style.cssText, 'height: 100%; width: 100%;');
+
+    S(el)({});
+
+    equal(el.style.height, '');
+    equal(el.style.width, '');
+})
